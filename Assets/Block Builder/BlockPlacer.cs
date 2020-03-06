@@ -27,4 +27,6 @@ public class BlockPlacer : MonoBehaviour
             Instantiate(blockPrefab, vrPointer.point, Quaternion.identity);
         }
     }
+
+
 }
