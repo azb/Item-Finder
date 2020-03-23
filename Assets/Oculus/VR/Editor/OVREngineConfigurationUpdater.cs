@@ -172,10 +172,6 @@ class OVREngineConfigurationUpdater
 
 		if (PlayerSettings.virtualRealitySupported)
 			return;
-        else
-        {
-            Debug.Log("virtual reality not supported");
-        }
 		
 		var mgrs = GameObject.FindObjectsOfType<OVRManager>();
 		for (int i = 0; i < mgrs.Length; ++i)

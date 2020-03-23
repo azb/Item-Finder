@@ -380,7 +380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8793604742884116272}
   m_Layer: 0
-  m_Name: Item Finder Player Rig
+  m_Name: Item Finder VR Player Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

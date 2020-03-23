@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VRPointer : Pointer {
+public class ARPointer : Pointer {
     
-    public VRController vrController;
-
     private void Start()
     {
-        if (vrController == null)
-        vrController = FindObjectOfType<VRController>();
     }
 
     // Update is called once per frame
@@ -18,9 +14,9 @@ public class VRPointer : Pointer {
         Ray ray = new Ray(this.transform.position, transform.forward);
         
         UpdatePointer(ray,
-            vrController.triggerRightHand.Pressed(),
-            vrController.triggerRightHand.Held(),
-            vrController.triggerRightHand.Released()
+            Input.GetMouseButtonDown(0),
+            Input.GetMouseButton(0),
+            Input.GetMouseButtonUp(0)
             );
     }
 }
