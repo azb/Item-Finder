@@ -15,10 +15,10 @@ public class VRKeyboard : MonoBehaviour
 
     public void SetActiveInputField(InputField inputField)
     {
-        Debug.Log("SetActiveInputField "+inputField.gameObject.name);
-        
+        Debug.Log("SetActiveInputField " + inputField.gameObject.name);
+
         transform.parent.gameObject.SetActive(inputField != null);
-        
+
         this.inputField = inputField;
     }
 
@@ -37,7 +37,10 @@ public class VRKeyboard : MonoBehaviour
 
         if (character.name == "BACKSPACE")
         {
-            inputField.text = inputField.text.Substring(0, inputField.text.Length - 1);
+            if (inputField.text.Length > 0)
+            {
+                inputField.text = inputField.text.Substring(0, inputField.text.Length - 1);
+            }
         }
         else
         {
