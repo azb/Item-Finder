@@ -50,21 +50,21 @@ public class Pointer : MonoBehaviour
 
             point = hitInfo.point;
 
-            if (Vector3.Distance(hitDot.position, hitInfo.point) < 10f)
-            { 
-                hitDot.position = Vector3.Lerp( 
-                    hitDot.position , 
-                    hitInfo.point , 
-                    15f * Time.deltaTime
-                    );
-            }
-            else
-            {   
+            //if (Vector3.Distance(hitDot.position, hitInfo.point) < 10f)
+            //{ 
+            //    hitDot.position = Vector3.Lerp( 
+            //        hitDot.position , 
+            //        hitInfo.point , 
+            //        15f * Time.deltaTime
+            //        );
+            //}
+            //else
+            //{   
                 hitDot.position = hitInfo.point;
-            }
+            //}
 
             hitDot.transform.localScale = 
-                new Vector3(.1f, .1f, .1f) 
+                new Vector3(.01f, .01f, .01f) 
                 + new Vector3(.01f, .01f, .01f) 
                 * Vector3.Distance(hitDot.position, transform.position);
 
@@ -82,8 +82,13 @@ public class Pointer : MonoBehaviour
 
             if (button != null)
             {
+                Debug.Log("button != null "+gameObject.name);
+
                 if (pointerPressed) //OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
                 {
+                    Debug.Log("pointerPressed "+gameObject.name);
+
+
                     //InGameDebug d = GameObject.FindGameObjectWithTag("InGameDebugger").GetComponent<InGameDebug>();
                     //d.Log("OnClick in VRPointer.cs");
                     button.OnClick();

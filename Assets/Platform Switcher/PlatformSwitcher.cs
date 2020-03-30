@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class PlatformSwitcher : MonoBehaviour
 {
-    public enum Platform { AugmentedReality, VirtualReality };
-
-    public Platform platform;
-
     public GameObject augmentedRealityRig, virtualRealityRig;
-
+    
     // Start is called before the first frame update
     void Start()
     {

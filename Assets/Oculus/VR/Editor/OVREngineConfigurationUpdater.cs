@@ -154,7 +154,7 @@ class OVREngineConfigurationUpdater
 			// black.
 			if (QualitySettings.antiAliasing != 0 && QualitySettings.antiAliasing != 1)
 			{
-				Debug.Log("OVREngineConfigurationUpdater: Disabling antiAliasing");
+				//Debug.Log("OVREngineConfigurationUpdater: Disabling antiAliasing");
 				QualitySettings.antiAliasing = 1;
 			}
 		}
@@ -178,6 +178,7 @@ class OVREngineConfigurationUpdater
 		{
 			if (mgrs [i].isActiveAndEnabled)
 			{
+                return;
 				Debug.Log ("Enabling Unity VR support");
 				PlayerSettings.virtualRealitySupported = true;
 

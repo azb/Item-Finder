@@ -26,12 +26,12 @@ public class VRControllerOVR : VRController
         if (VR.GetPlatform() == VR.Platform.OculusGo)
         {
             controllerType = ControllerType.OculusGo;
-            Debug.Log("Found controller type OculusGo");
+            //Debug.Log("Found controller type OculusGo");
         }
         else
         {
             controllerType = ControllerType.OculusRift;
-            Debug.Log("Found controller type OculusRift");
+            //Debug.Log("Found controller type OculusRift");
         }
 
 

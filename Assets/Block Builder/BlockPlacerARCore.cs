@@ -26,28 +26,24 @@ public class BlockPlacerARCore : BlockPlacer
             {
                 touchHeld = true;
                 Debug.Log("touchPressed "+gameObject.name);
-
-
             }
 
             if (Input.GetTouch(0).phase == TouchPhase.Ended)
             {
                 touchHeld = false;
                 Debug.Log("touchReleased "+gameObject.name);
-
-
             }
         }
 
         PlaceBlock(
             touchPressed,
             touchHeld,
-            touchReleased
+            touchReleased,
+            handTransform.position.y
             //Input.GetTouch(0).phase == TouchPhase.Ended
             //Input.GetMouseButtonDown(0),
             //Input.GetMouseButton(0),
             //Input.GetMouseButtonUp(0)
             );
-
     }
 }

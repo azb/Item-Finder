@@ -91,6 +91,7 @@ namespace VRTutorializer
             IEnumerator timer = Timer(device, timeRemaining, frequency, amplitude);
             StartCoroutine(timer);
         }
+
         IEnumerator Timer(VRDevice device, float timeRemaining, float frequency, float amplitude)
         {
             float waitTime = Mathf.Min(timeRemaining, 2f);
@@ -106,8 +107,7 @@ namespace VRTutorializer
                 Vibrate(device, 0, 0, 0);
             }
         }
-
-
+        
         // Start is called before the first frame update
         void Start()
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class VRButton : MonoBehaviour
 {
@@ -22,23 +23,25 @@ public class VRButton : MonoBehaviour
 
     bool alreadyHovering;
 
-
+    Button button;
 
     // Use this for initialization
     void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
+        button = GetComponent<Button>();
 
-        GameObject uiSoundEffectsObject = GameObject.FindWithTag("UI Sound Effects");
 
-        if (uiSoundEffectsObject != null)
-        {
-            audioSource = uiSoundEffectsObject.GetComponent<AudioSource>();
-        }
-        else
-        {
-            audioSource = GetComponent<AudioSource>();
-        }
+        //GameObject uiSoundEffectsObject = GameObject.FindWithTag("UI Sound Effects");
+
+        //if (uiSoundEffectsObject != null)
+        //{
+        //    audioSource = uiSoundEffectsObject.GetComponent<AudioSource>();
+        //}
+        //else
+        //{
+        //    audioSource = GetComponent<AudioSource>();
+        //}
 
         if (audioSource == null)
         {
@@ -50,7 +53,11 @@ public class VRButton : MonoBehaviour
 
         targetPos = transform.localPosition;
         startPos = transform.localPosition;
-        meshRenderer.material = restTex;
+
+        if (meshRenderer != null)
+        {
+            meshRenderer.material = restTex;
+        }
     }
 
     // Update is called once per frame
@@ -67,43 +74,75 @@ public class VRButton : MonoBehaviour
             //targetPos = startPos;
         }
     }
-    
+
     public void OnHover()
     {
+        Debug.Log("OnHover " + gameObject.name);
+        if (button != null)
+        {
+            button.Select();
+        }
+
         onHover.Invoke();
         timeSinceHovered = 0;
         //targetPos = startPos + new Vector3(0, .05f, 0);
-        meshRenderer.material = hoverTex;
+        if (meshRenderer != null)
+        {
+            meshRenderer.material = hoverTex;
+        }
+
         if (!alreadyHovering)
         {
-        if (hoverSoundEffect != null)
-            audioSource.PlayOneShot(hoverSoundEffect);
-        alreadyHovering = true;
+            if (hoverSoundEffect != null)
+            {
+                audioSource.PlayOneShot(hoverSoundEffect);
+            }
+
+            alreadyHovering = true;
         }
     }
 
     public void OnRelease()
     {
         onRelease.Invoke();
+
         if (clickSoundEffect != null)
-        audioSource.PlayOneShot(clickSoundEffect);
+        {
+            audioSource.PlayOneShot(clickSoundEffect);
+        }
 
-        meshRenderer.material = restTex;
-
+        if (meshRenderer != null)
+        {
+            meshRenderer.material = restTex;
+        }
     }
-    
+
     public void OnEndHover()
     {
         onEndHover.Invoke();
-        alreadyHovering = false;     
-        meshRenderer.material = restTex;
+        alreadyHovering = false;
+
+        if (meshRenderer != null)
+        {
+            meshRenderer.material = restTex;
+        }
     }
-    
+
     public void OnClick()
     {
+        Debug.Log("OnClick " + gameObject.name);
 
         //targetPos = startPos + new Vector3(0, 0, -.05f);
-        meshRenderer.material = clickTex;
+
+        if (meshRenderer != null)
+        {
+            meshRenderer.material = clickTex;
+        }
+
+        if (button != null)
+        {
+            button.onClick.Invoke();
+        }
 
         onClick.Invoke();
     }
