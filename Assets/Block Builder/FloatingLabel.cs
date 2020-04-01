@@ -1,53 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FloatingLabel : MonoBehaviour
 {
     [SerializeField] private GameObject label;
+
+    ItemGameObject item;
+
+    Text text;
 
     bool startedTimer, stillHovering;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        text = GetComponent<Text>();
+        HideLabel();
     }
 
-    public void Show()
+    public void SetItem(ItemGameObject item)
     {
-        if (!startedTimer)
-        {
-            label.SetActive(true);
-            StartHideLabelTimer(.1f);
-            startedTimer = true;
-            //transform.localScale = Vector3.one;
-        }
-        else
-        {
-            stillHovering = true;
-        }
+        this.item = item;
+        VRButton button = item.transform.GetComponent<VRButton>();
+        button.onHover.AddListener(ShowLabel);
+        button.onEndHover.AddListener(HideLabel);
     }
-
-    void StartHideLabelTimer(float waitTime)
+    
+    public void ShowLabel()
     {
-        IEnumerator timer = Timer(waitTime);
-        StartCoroutine(timer);
+        label.SetActive(true);
     }
-
-    IEnumerator Timer(float waitTime)
+    
+    public void HideLabel()
     {
-        yield return new WaitForSeconds(waitTime);
-        //Do something
-        if (stillHovering)
-        {
-            StartHideLabelTimer(.1f);
-            stillHovering = false;
-        }
-        else
-        {
-            label.SetActive(false);
-            startedTimer = false;
-        }
+        label.SetActive(false);
     }
 }
