@@ -9,18 +9,21 @@ public class Instantiater : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
-    
+
     public void DoInstantiate()
     {
         GameObject newObj = Instantiate(
-            prefab, 
-            transform.position, 
+            prefab,
+            transform.position,
             Quaternion.identity
             );
-        
+
         newObj.GetComponent<FollowObject>()
             .target = transform;
+
+        newObj.GetComponent<FloatingLabel>()
+            .SetItem(GetComponent<ItemGameObject>());
     }
 }

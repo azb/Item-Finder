@@ -32,9 +32,7 @@ public class BlockPlacer : MonoBehaviour
             placingState = PlacingState.NONE;
         }
     }
-
-
-
+    
     enum PlacingState { DRAW_XZ, EXTRUDE_Y, NONE };
 
     PlacingState placingState = PlacingState.NONE;
