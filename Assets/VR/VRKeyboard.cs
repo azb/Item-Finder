@@ -47,4 +47,11 @@ public class VRKeyboard : MonoBehaviour
             inputField.text += character.name;
         }
     }
+
+    public void Close()
+    {
+        transform.parent.gameObject.SetActive(false);
+    }
+
+
 }

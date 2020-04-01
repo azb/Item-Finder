@@ -23,6 +23,8 @@ public class FileChooser : MonoBehaviour
 
     [SerializeField] private InputField fileNameInput;
 
+    VRKeyboard vrKeyboard;
+
     //save and load button are needed for 
     //enabling / disabling based on which mode is open
     [SerializeField] private GameObject saveButton, loadButton;
@@ -83,7 +85,7 @@ public class FileChooser : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        CloseVRKeyboard();
     }
     
     public void OpenSaveFileWindow(UnityEvent onSaveFileCallback, UnityEvent onCancelCallback)
@@ -114,6 +116,7 @@ public class FileChooser : MonoBehaviour
 
         gameObject.SetActive(false);
         onSaveFile.Invoke();
+        CloseVRKeyboard();
     }
     
     public void LoadButtonClicked()
@@ -123,11 +126,20 @@ public class FileChooser : MonoBehaviour
         
         gameObject.SetActive(false);
         onLoadFile.Invoke();
+        CloseVRKeyboard();
     }
 
     public void CancelButtonClicked()
     {
         gameObject.SetActive(false);
         onCancel.Invoke();
+        CloseVRKeyboard();
+    }
+
+    void CloseVRKeyboard()
+    {
+        vrKeyboard = FindObjectOfType<VRKeyboard>();
+        if (vrKeyboard != null)
+        vrKeyboard.Close();
     }
 }
