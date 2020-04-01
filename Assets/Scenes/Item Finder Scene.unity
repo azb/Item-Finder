@@ -5368,34 +5368,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c539aa4fa1bac4b4da61761b0699b48b, type: 3}
---- !u!1 &690814130 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7541295333976309186, guid: f24a124ef91ffb947ae5e742de3bed1b,
-    type: 3}
-  m_PrefabInstance: {fileID: 566630986}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &690814131 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 690814131, guid: f24a124ef91ffb947ae5e742de3bed1b,
     type: 3}
   m_PrefabInstance: {fileID: 566630986}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690814130}
+  m_GameObject: {fileID: 0}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c866d0ce7aabc4145974c663626143af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &690814134 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7541295333976309247, guid: f24a124ef91ffb947ae5e742de3bed1b,
-    type: 3}
-  m_PrefabInstance: {fileID: 566630986}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690814130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30c74dc79c67dbb42b12062f72884922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &690814135 stripped
@@ -5404,25 +5386,12 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 566630986}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690814130}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5482afb9f6f9bd04cbfdb4e74a177a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &690814136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690814130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0a4b66504c63b746920d7dd16f18442, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointer: {fileID: 690814134}
 --- !u!1 &720810756
 GameObject:
   m_ObjectHideFlags: 0
