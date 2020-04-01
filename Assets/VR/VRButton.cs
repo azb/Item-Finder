@@ -54,7 +54,7 @@ public class VRButton : MonoBehaviour
         targetPos = transform.localPosition;
         startPos = transform.localPosition;
 
-        if (meshRenderer != null)
+        if (meshRenderer != null && restTex!=null)
         {
             meshRenderer.material = restTex;
         }
@@ -86,7 +86,7 @@ public class VRButton : MonoBehaviour
         onHover.Invoke();
         timeSinceHovered = 0;
         //targetPos = startPos + new Vector3(0, .05f, 0);
-        if (meshRenderer != null)
+        if (meshRenderer != null && hoverTex != null)
         {
             meshRenderer.material = hoverTex;
         }
@@ -111,7 +111,7 @@ public class VRButton : MonoBehaviour
             audioSource.PlayOneShot(clickSoundEffect);
         }
 
-        if (meshRenderer != null)
+        if (meshRenderer != null && restTex != null)
         {
             meshRenderer.material = restTex;
         }
@@ -122,7 +122,7 @@ public class VRButton : MonoBehaviour
         onEndHover.Invoke();
         alreadyHovering = false;
 
-        if (meshRenderer != null)
+        if (meshRenderer != null && restTex != null)
         {
             meshRenderer.material = restTex;
         }
@@ -134,7 +134,7 @@ public class VRButton : MonoBehaviour
 
         //targetPos = startPos + new Vector3(0, 0, -.05f);
 
-        if (meshRenderer != null)
+        if (meshRenderer != null && clickTex != null)
         {
             meshRenderer.material = clickTex;
         }
