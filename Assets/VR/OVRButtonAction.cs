@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class OVRButtonAction : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class OVRButtonAction : MonoBehaviour
     [SerializeField] private GameObject[] gameObjectsToToggle;
 
     [SerializeField] private OVRInput.Button button;
+
+    [SerializeField] private UnityEvent action;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +36,8 @@ public class OVRButtonAction : MonoBehaviour
             {
                 gameObjectsToToggle[i].SetActive(!gameObjectsToToggle[i].activeSelf);
             }
+            
+            action.Invoke();
         }
     }
 }
