@@ -82,13 +82,8 @@ public class Pointer : MonoBehaviour
 
             if (button != null)
             {
-                Debug.Log("button != null "+gameObject.name);
-
                 if (pointerPressed) //OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
                 {
-                    Debug.Log("pointerPressed "+gameObject.name);
-
-
                     //InGameDebug d = GameObject.FindGameObjectWithTag("InGameDebugger").GetComponent<InGameDebug>();
                     //d.Log("OnClick in VRPointer.cs");
                     button.OnClick();

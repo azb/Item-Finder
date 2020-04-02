@@ -77,7 +77,6 @@ public class VRButton : MonoBehaviour
 
     public void OnHover()
     {
-        Debug.Log("OnHover " + gameObject.name);
         if (button != null)
         {
             button.Select();
@@ -130,10 +129,6 @@ public class VRButton : MonoBehaviour
 
     public void OnClick()
     {
-        Debug.Log("OnClick " + gameObject.name);
-
-        //targetPos = startPos + new Vector3(0, 0, -.05f);
-
         if (meshRenderer != null && clickTex != null)
         {
             meshRenderer.material = clickTex;
