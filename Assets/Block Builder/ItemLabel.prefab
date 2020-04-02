@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: {fileID: 220176064086172212}
+  text: {fileID: 4539670043291441096}
 --- !u!114 &8232114315896395734
 MonoBehaviour:
   m_ObjectHideFlags: 0
