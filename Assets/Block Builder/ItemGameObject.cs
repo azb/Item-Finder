@@ -23,4 +23,10 @@ public class ItemGameObject : MonoBehaviour
         item.StoreTransform(transform.position, transform.localScale);
     }
     
+    public void Rename(string newName)
+    {
+        item.itemName = newName;
+    }
+
+
 }
