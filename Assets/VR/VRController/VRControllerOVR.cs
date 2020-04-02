@@ -78,15 +78,24 @@ public class VRControllerOVR : VRController
         {
             triggerJustPressed = 
                 OVRInput.GetDown(
+                    OVRInput.Button.PrimaryIndexTrigger
+                    ) || 
+                OVRInput.GetDown(
                     OVRInput.Button.SecondaryIndexTrigger
                     );
 
             triggerHeld = 
                 OVRInput.Get(
+                    OVRInput.Button.PrimaryIndexTrigger
+                    ) || 
+                OVRInput.Get(
                     OVRInput.Button.SecondaryIndexTrigger
                     );
 
             triggerJustReleased = 
+                OVRInput.GetUp(
+                    OVRInput.Button.PrimaryIndexTrigger
+                    ) || 
                 OVRInput.GetUp(
                     OVRInput.Button.SecondaryIndexTrigger
                     );
