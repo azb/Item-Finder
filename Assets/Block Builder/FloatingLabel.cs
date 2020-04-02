@@ -9,14 +9,13 @@ public class FloatingLabel : MonoBehaviour
 
     ItemGameObject item;
 
-    Text text;
+    [SerializeField] private Text text;
 
     bool startedTimer, stillHovering;
 
     // Start is called before the first frame update
     void Start()
     {
-        text = GetComponent<Text>();
         HideLabel();
     }
 
@@ -30,6 +29,7 @@ public class FloatingLabel : MonoBehaviour
     
     public void ShowLabel()
     {
+        text.text = item.GetItem().itemName;
         label.SetActive(true);
     }
     
