@@ -90,6 +90,7 @@ public class FileChooser : MonoBehaviour
     
     public void OpenSaveFileWindow(UnityEvent onSaveFileCallback, UnityEvent onCancelCallback)
     {
+        fileNameInput.text = "";
         saveButton.SetActive(true);
         loadButton.SetActive(false);
         gameObject.SetActive(true);
@@ -99,7 +100,7 @@ public class FileChooser : MonoBehaviour
     
     public void OpenLoadFileWindow(UnityEvent onLoadFileCallback, UnityEvent onCancelCallback)
     {
-        
+        fileNameInput.text = "";
         saveButton.SetActive(false);
         loadButton.SetActive(true);
         Debug.Log("GetsHere14 "+gameObject.name);
