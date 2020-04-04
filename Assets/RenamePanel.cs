@@ -5,6 +5,8 @@ using UnityEngine;
 public class RenamePanel : MonoBehaviour
 {
     [SerializeField] private ItemOptions itemOptions;
+
+    [SerializeField] private GameObject startPanel;
     
     VRKeyboard keyboard;
     
@@ -19,5 +21,14 @@ public class RenamePanel : MonoBehaviour
         itemOptions.RenameItem(keyboard.inputField.text);
         keyboard.Close();
         itemOptions.Close();
+        CloseRenamePanel();
     }
+
+    public void CloseRenamePanel()
+    {
+        gameObject.SetActive(false);
+        startPanel.SetActive(true);
+    }
+
+
 }
