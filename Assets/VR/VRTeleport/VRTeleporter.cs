@@ -12,13 +12,13 @@ public class VRTeleporter : MonoBehaviour
 
     public LineRenderer line;
 
-    public Transform playerHead, playArea;
+    public Transform playArea;
 
-    VRPointer vrPointer;
+    VRPointer[] vrPointers;
 
     bool teleportArcHitsGround;
 
-    public Material arcCanTeleport, arcCantTeleport;
+    public Material arcCanTeleportMaterial, arcCantTeleportMaterial;
 
     AudioSource audioSource;
     public AudioClip teleportSoundEffect, powerUpSoundEffect;
@@ -59,7 +59,8 @@ public class VRTeleporter : MonoBehaviour
 
         groundLayer = LayerMask.GetMask(groundLayerNames);
 
-        vrPointer = GetComponent<VRPointer>();
+        //vrPointer = GetComponent<VRPointer>();
+        vrPointers = FindObjectsOfType<VRPointer>();
 
         if (teleportCylinder == null)
         {
@@ -72,9 +73,9 @@ public class VRTeleporter : MonoBehaviour
 
         teleportCylinder.gameObject.SetActive(false);
 
-        playArea = GameObject.Find("VRPlatformCameraRig").transform;
+        //playArea = GameObject.Find("VRPlatformCameraRig").transform;
 
-        vrController = GetComponent<VRController>();
+        vrController = FindObjectOfType<VRController>();
 
         var t = playArea;
         targetPoint = transform.position;
@@ -101,62 +102,16 @@ public class VRTeleporter : MonoBehaviour
 
     void Teleport(Vector3 point)
     {
+        Debug.Log("GetsHere8 "+gameObject.name);
+        
         audioSource.PlayOneShot(teleportSoundEffect);
 
-        Vector3 offset = playArea.position - playerHead.position;
+        //Vector3 offset = playArea.position - playerHead.position;
 
         playArea.position = point;
     }
-
-    void Teleport()
-    {
-        Vector3 offset = playArea.position - playerHead.position;
-
-        //Teleport if the pad is pressed
-        //if (teleportOnClick)
-        //{
-        // First get the current Transform of the the reference space (i.e. the Play Area, e.g. CameraRig prefab)
-        var t = playArea; //steamPlayAreaReference;
-        if (t == null)
-        {
-            Debug.Log("Can't teleport - play area not found");
-            return;
-        }
-
-        // Get the current Y position of the reference space
-        float refY = t.position.y;
-
-        // Create a plane at the Y position of the Play Area
-        // Then create a Ray from the origin of the controller in the direction that the controller is pointing
-        Plane plane = new Plane(Vector3.up, -refY);
-        Ray ray = new Ray(this.transform.position, transform.forward);
-
-        // Set defaults
-        bool hasGroundTarget = false;
-        float dist = 0f;
-        if (teleportType == TeleportType.TeleportTypeUseTerrain) // If we picked to use the terrain
-        {
-            RaycastHit hitInfo;
-            TerrainCollider tc = Terrain.activeTerrain.GetComponent<TerrainCollider>();
-            hasGroundTarget = tc.Raycast(ray, out hitInfo, 1000f);
-            dist = hitInfo.distance;
-        }
-        else if (teleportType == TeleportType.TeleportTypeUseCollider) // If we picked to use the collider
-        {
-            RaycastHit hitInfo;
-            hasGroundTarget = Physics.Raycast(ray, out hitInfo);
-            dist = hitInfo.distance;
-        }
-        else // If we're just staying flat on the current Y axis
-        {
-            // Intersect a ray with the plane that was created earlier
-            // and output the distance along the ray that it intersects
-            hasGroundTarget = plane.Raycast(ray, out dist);
-        }
-        teleportArcHitsGround = hasGroundTarget;
-    }
-
     
+
     void Update()
     {
         teleportButtonPressed =
@@ -173,15 +128,7 @@ public class VRTeleporter : MonoBehaviour
             (vrController.touchpadRightHand.GetTouchpadButtonReleased()
             && Mathf.Abs(vrController.touchpadRightHand.padPos.x) < .4f)
             || (vrController.GetJoystickAxisReleased(1) && vrController.usesJoystick);
-
-        //if (teleportButtonPressed)
-        //    Debug.Log("teleportButtonPressed");
-        //if (teleportButtonHeld)
-        //    Debug.Log("teleportButtonHeld");
-        //if (teleportButtonReleased)
-        //    Debug.Log("teleportButtonReleased");
-
-
+        
         if (teleportButtonPressed)
         {
             int count = disableWhileTeleporting.Length;
@@ -191,13 +138,17 @@ public class VRTeleporter : MonoBehaviour
                 disableWhileTeleportingStartEnabled[i] = disableWhileTeleporting[i].enabled;
                 disableWhileTeleporting[i].enabled = false;
             }
-
-
+            
             audioSource.PlayOneShot(powerUpSoundEffect);
             teleportCylinder.gameObject.SetActive(true);
 
-            vrPointer.enabled = false;
+            count = vrPointers.Length;
 
+            for (int i = 0; i < count; i++)
+            {
+                vrPointers[i].enabled = false;
+            }
+            
             teleportArcLinePositions = new Vector3[100];
 
             teleportArcLineCount = teleportArcLinePositions.Length;
@@ -248,11 +199,11 @@ public class VRTeleporter : MonoBehaviour
 
             if (teleportArcHitsGround)
             {
-                line.material = arcCanTeleport;
+                line.material = arcCanTeleportMaterial;
             }
             else
             {
-                line.material = arcCantTeleport;
+                line.material = arcCantTeleportMaterial;
             }
         }
 
@@ -265,8 +216,14 @@ public class VRTeleporter : MonoBehaviour
             {
                 disableWhileTeleporting[i].enabled = disableWhileTeleportingStartEnabled[i];
             }
+            
+            count = vrPointers.Length;
 
-            vrPointer.enabled = true;
+            for (int i = 0; i < count; i++)
+            {
+                vrPointers[i].enabled = true;
+            }
+            
             teleportCylinder.gameObject.SetActive(false);
             Vector3[] positions = new Vector3[2];
 
@@ -277,9 +234,9 @@ public class VRTeleporter : MonoBehaviour
 
             if (teleportArcHitsGround)
             {
-                Teleport(teleportCylinder.position + new Vector3(0, 5, 0));
+                Teleport(teleportCylinder.position);
             }
-            line.material = arcCanTeleport;
+            line.material = arcCanTeleportMaterial;
         }
     }
 }

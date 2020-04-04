@@ -19,18 +19,19 @@ public class Pointer : MonoBehaviour
     {
         hitDot.gameObject.SetActive(true);
     }
+
     private void OnDisable()
     {
         if (hitDot != null)
+        {
         hitDot.gameObject.SetActive(false);
+        }
     }
 
     
     // Update is called once per frame
     public void UpdatePointer(Ray ray, bool pointerPressed, bool pointerHeld, bool pointerReleased)
     {
-        hitDot.gameObject.SetActive(false);
-
         Plane plane = new Plane(Vector3.up, 0);
 
         string[] layerNames = new string[] { "UI", "Ground", "Water", "VROnly" };
@@ -42,7 +43,11 @@ public class Pointer : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo, maxDistance, layerMask))
         {
             hitInfoInitialized = true;
+
+            if (!hitDot.gameObject.activeSelf)
+            {
             hitDot.gameObject.SetActive(true);
+            }
             //Debug.Log("hitInfo.normal = "+hitInfo.normal);
 
 
@@ -106,9 +111,14 @@ public class Pointer : MonoBehaviour
         }
         else
         {
+            if (hitDot.gameObject.activeSelf)
+            {
+            hitDot.gameObject.SetActive(false);
+            }
+
             if (currentHoverButton != null)
             {
-                currentHoverButton.OnEndHover();
+            currentHoverButton.OnEndHover();
             currentHoverButton = null;
             }
         }

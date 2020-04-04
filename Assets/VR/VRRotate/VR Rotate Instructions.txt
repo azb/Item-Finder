@@ -1,0 +1,5 @@
+To add vr rotation to your vr app:
+
+1. Drop the VR Rotate Rig prefab in your scene
+2. Link it to your play area in the inspector
+3. Rotate sound effect is optional

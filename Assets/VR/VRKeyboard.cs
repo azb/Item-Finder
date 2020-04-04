@@ -36,6 +36,11 @@ public class VRKeyboard : MonoBehaviour
                 }
             }
             else
+            if (character.name == "CLEAR")
+            {
+                inputField.text = "";
+            }
+            else
             if (character.name == "ENTER")
             {
                 if (onHitEnterButton != null)
