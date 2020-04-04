@@ -22,31 +22,14 @@ public class ItemFinderUser : MonoBehaviour
     public void SetStateFromBlockPlacer()
     {
         BlockPlacer blockPlacer = FindObjectOfType<BlockPlacer>();
-
-        Debug.Log("blockPlacer = "+blockPlacer);
-
-        if (blockPlacer!=null)
-        {
-            Debug.Log("blockPlacer.enabled = "+blockPlacer.enabled);
-
-
-        }
-
+        
         if (blockPlacer!=null && blockPlacer.enabled)
         {
-            Debug.Log("blockPlacer is active");
-            
             state = State.Architect;
         }
         else
         {
-            Debug.Log("blockPlacer is inactive");
-            
             state = State.None;
         }
     }
-
-
-
-
 }

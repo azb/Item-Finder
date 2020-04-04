@@ -102,16 +102,10 @@ public class VRTeleporter : MonoBehaviour
 
     void Teleport(Vector3 point)
     {
-        Debug.Log("GetsHere8 "+gameObject.name);
-        
         audioSource.PlayOneShot(teleportSoundEffect);
-
-        //Vector3 offset = playArea.position - playerHead.position;
-
         playArea.position = point;
     }
     
-
     void Update()
     {
         teleportButtonPressed =
@@ -155,7 +149,7 @@ public class VRTeleporter : MonoBehaviour
 
             for (int i = 0; i < teleportArcLineCount; i++)
             {
-                teleportArcLinePositions[i] = new Vector3(0, -i * i / 50f, i * 3 + .05f);
+                teleportArcLinePositions[i] = new Vector3(0, -i * i / 50f, i + .05f);
             }
 
             line.SetVertexCount(teleportArcLineCount);
@@ -227,7 +221,7 @@ public class VRTeleporter : MonoBehaviour
             teleportCylinder.gameObject.SetActive(false);
             Vector3[] positions = new Vector3[2];
 
-            positions[0] = new Vector3(0, 0, +.05f);
+            positions[0] = new Vector3(0, 0, .05f);
             positions[1] = new Vector3(0, 0, 10);
             line.SetVertexCount(2);
             line.SetPositions(positions);

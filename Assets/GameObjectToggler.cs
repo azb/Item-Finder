@@ -9,9 +9,6 @@ public class GameObjectToggler : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Debug.Log("GetsHere10 "+gameObject.name);
-
-
     }
 
     public void Toggle(GameObject gameObjectToEnable)
