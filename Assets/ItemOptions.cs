@@ -39,4 +39,11 @@ public class ItemOptions : MonoBehaviour
     {
         selectedItem.Rename(newName); 
     }
+
+    public void DeleteItem()
+    {
+        Destroy(selectedItem.gameObject);
+    }
+
+
 }
