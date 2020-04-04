@@ -29,6 +29,7 @@ public class FloatingLabel : MonoBehaviour
     
     public void ShowLabel()
     {
+        label.transform.localPosition = new Vector3(0,item.transform.localScale.y,0);
         text.text = item.GetItem().itemName;
         label.SetActive(true);
     }
