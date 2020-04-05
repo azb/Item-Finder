@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ItemOptions : MonoBehaviour
 {
@@ -10,29 +11,46 @@ public class ItemOptions : MonoBehaviour
 
     ItemGameObject selectedItem;
 
+    [SerializeField] private GameObject vrui;
+
+    [SerializeField] private UnityEvent onOpenItemMenu, onCloseItemMenu;
+
+    [SerializeField] private SharedResourcesScriptableObject sharedResources;
+
     // Start is called before the first frame update
     void Start()
     {
         user = FindObjectOfType<ItemFinderUser>();
     }
 
-    public void Open(Transform item)
+    public void Open()
     {
-        selectedItem = item.GetComponent<ItemGameObject>();
+        selectedItem = sharedResources.selectedItem; //item.GetComponent<ItemGameObject>();
         
+        vrui.SetActive(true);
+
+        Debug.Log("GetsHere16 "+gameObject.name);
+
+
         if (user.state == ItemFinderUser.State.None)
         {
-            panel.gameObject.SetActive(true);
+            Debug.Log("GetsHere15 "+gameObject.name);
+
+
+            //panel.gameObject.SetActive(true);
+            
+            onOpenItemMenu.Invoke();
 
             GameObject mainCamera = GameObject.FindWithTag("MainCamera");
-
-            transform.position = (item.position + mainCamera.transform.position) / 2f;
+            
+            transform.position = (selectedItem.transform.position + mainCamera.transform.position) / 2f;
         }
     }
 
     public void Close()
     {
-        panel.gameObject.SetActive(false);
+        //panel.gameObject.SetActive(false);
+        onCloseItemMenu.Invoke();
     }
 
     public void RenameItem(string newName)
@@ -44,6 +62,4 @@ public class ItemOptions : MonoBehaviour
     {
         Destroy(selectedItem.gameObject);
     }
-
-
 }
