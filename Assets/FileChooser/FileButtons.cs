@@ -16,6 +16,7 @@ public class FileButtons : MonoBehaviour
         onCancelLoadFileCallback,
         onLoadFileCallback;
 
+
     string currentFile = "";
 
     // Start is called before the first frame update
@@ -32,12 +33,6 @@ public class FileButtons : MonoBehaviour
         onLoadFileCallback.AddListener(OnLoadFileCallback);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void OnSaveFileCallback()
     {
         Debug.Log("OnSaveFileCallback");
@@ -45,19 +40,19 @@ public class FileButtons : MonoBehaviour
         string filename = fileChooser.chosenFile;
 
         //filename = filename.Replace("\","");
-        
+
         if (filename != "")
         {
-            string filenameWithForwardSlashes = filename.Replace("\\","/");
+            string filenameWithForwardSlashes = filename.Replace("\\", "/");
             filename = filenameWithForwardSlashes;
 
-            Debug.Log("checking if filename "+filename+" contains "+Application.persistentDataPath);
+            Debug.Log("checking if filename " + filename + " contains " + Application.persistentDataPath);
 
 
             if (!filename.Contains(Application.persistentDataPath))
             {
                 Debug.Log("Doesn't contain");
-                
+
                 filename = Application.persistentDataPath + "/" + filename;
             }
             else
@@ -68,10 +63,10 @@ public class FileButtons : MonoBehaviour
             room.Save(filename);
         }
 
-        
+
         vrui.SetTab(homeUI);
     }
-    
+
     void OnCancelSaveFileCallback()
     {
         Debug.Log("Saving file cancelled");
@@ -83,33 +78,33 @@ public class FileButtons : MonoBehaviour
     {
         Debug.Log("Loading file cancelled");
         vrui.SetTab(homeUI);
-        
+
     }
 
     void OnLoadFileCallback()
     {
         Debug.Log("OnLoadFileCallback");
-        
+
         if (fileChooser.chosenFile != "")
         {
             currentFile = fileChooser.chosenFile;
             room.Load(fileChooser.chosenFile);
         }
-        
+
         vrui.SetTab(homeUI);
     }
 
     public void NewButtonPressed()
     {
         currentFile = "";
-        Debug.Log("NewButtonPressed "+gameObject.name);
+        Debug.Log("NewButtonPressed " + gameObject.name);
 
         room.Clear();
     }
 
     public void SaveButtonPressed()
     {
-        Debug.Log("SaveButtonPressed "+gameObject.name);
+        Debug.Log("SaveButtonPressed " + gameObject.name);
 
 
         if (currentFile == "")
@@ -117,6 +112,11 @@ public class FileButtons : MonoBehaviour
             fileChooser.OpenSaveFileWindow(
                 onSaveFileCallback,
                 onCancelSaveFileCallback
+                );
+
+            fileChooser.ShowFiles(
+                Application.persistentDataPath,
+                "*.json"
                 );
         }
         else
@@ -127,19 +127,23 @@ public class FileButtons : MonoBehaviour
 
     public void SaveAsButtonPressed()
     {
-        Debug.Log("SaveAsButtonPressed "+gameObject.name);
-
+        Debug.Log("SaveAsButtonPressed " + gameObject.name);
 
         fileChooser.OpenSaveFileWindow(
             onSaveFileCallback,
             onCancelSaveFileCallback
             );
+
+        fileChooser.ShowFiles(
+            Application.persistentDataPath,
+            "*.json"
+            );
     }
 
     public void LoadButtonPressed()
     {
-        Debug.Log("LoadButtonPressed "+gameObject.name);
-        
+        Debug.Log("LoadButtonPressed " + gameObject.name);
+
         fileChooser.OpenLoadFileWindow(
             onLoadFileCallback,
             onCancelLoadFileCallback
