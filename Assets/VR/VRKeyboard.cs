@@ -12,16 +12,36 @@ public class VRKeyboard : MonoBehaviour
 
     private UnityEvent onHitEnterButton;
 
+    [SerializeField] private GameObject[] letterKeys;
+
+    bool uppercase;
+
     // Start is called before the first frame update
     void Awake()
     {
         onHitEnterButton = new UnityEvent();
+        SwitchCase(uppercase);
+    }
+
+    void SwitchCase(bool newCase)
+    {
+        int count = letterKeys.Length;
+
+        for (int i = 0; i < count; i++)
+        {
+            if (uppercase)
+            {
+                letterKeys[i].name = letterKeys[i].name.ToUpper();
+            }
+            else
+            {
+                letterKeys[i].name = letterKeys[i].name.ToLower();
+            }
+        }
     }
     
     public void AddCharacter(GameObject character)
     {
-
-
         if (inputField == null)
         {
             Debug.LogError("No input field set for vr keyboard");
@@ -39,6 +59,12 @@ public class VRKeyboard : MonoBehaviour
             if (character.name == "CLEAR")
             {
                 inputField.text = "";
+            }
+            else
+            if (character.name == "SHIFT")
+            {
+                uppercase = !uppercase;
+                SwitchCase(uppercase);
             }
             else
             if (character.name == "ENTER")
