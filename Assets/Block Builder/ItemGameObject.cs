@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,5 +29,8 @@ public class ItemGameObject : MonoBehaviour
         item.itemName = newName;
     }
 
-
+    public static implicit operator ItemGameObject(Transform v)
+    {
+        throw new NotImplementedException();
+    }
 }

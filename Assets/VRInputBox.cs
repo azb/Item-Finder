@@ -14,7 +14,7 @@ public class VRInputBox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        keyboard = FindObjectOfType<VRKeyboard>();
+        keyboard = Resources.FindObjectsOfTypeAll<VRKeyboard>()[0];
         vrButton = GetComponent<VRButton>();
         vrButton.onClick.AddListener(OnClick);
         inputField = GetComponent<InputField>();
@@ -22,6 +22,9 @@ public class VRInputBox : MonoBehaviour
     
     public void OnClick()
     {
+        Debug.Log("OnClick GetsHere11 "+gameObject.name);
+
+
         keyboard.Open(inputField);
     }
 }

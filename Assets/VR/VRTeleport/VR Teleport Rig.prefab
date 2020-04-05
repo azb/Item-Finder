@@ -156,7 +156,7 @@ LineRenderer:
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
-  m_UseWorldSpace: 1
+  m_UseWorldSpace: 0
   m_Loop: 0
 --- !u!1 &5243270258629637321
 GameObject:
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 5243270259207397087}
   - component: {fileID: 5243270259207397080}
   m_Layer: 0
-  m_Name: Right Hand
+  m_Name: Teleporter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,7 +252,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   line: {fileID: 5243270258135980648}
   playArea: {fileID: 0}
-  vrPointer: {fileID: 0}
   arcCanTeleportMaterial: {fileID: 2100000, guid: 638b28336f7e395419a89f6f1c8fbd1e,
     type: 2}
   arcCantTeleportMaterial: {fileID: 2100000, guid: b17b300e081db1a418888b3e0526fb9d,

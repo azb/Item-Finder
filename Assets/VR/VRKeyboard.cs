@@ -8,7 +8,7 @@ public class VRKeyboard : MonoBehaviour
 {
     public InputField inputField;
 
-    [SerializeField] private GameObject vrKeyboardCanvas;
+    [SerializeField] private GameObject vrKeyboardCanvas, vrui;
 
     private UnityEvent onHitEnterButton;
 
@@ -68,6 +68,7 @@ public class VRKeyboard : MonoBehaviour
     public void Open(InputField inputField)
     {
         vrKeyboardCanvas.SetActive(true);
+        vrui.SetActive(true);
         this.inputField = inputField;
     }
 }

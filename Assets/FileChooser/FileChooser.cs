@@ -9,8 +9,10 @@ public class FileChooser : MonoBehaviour
 {
     [SerializeField] private Transform content, fileChooserButtonPrefab;
 
+    [HideInInspector]
     public UnityEvent onSaveFile, onLoadFile, onCancel;
-
+    
+    [HideInInspector]
     public string chosenFile;
         
     enum State { Saving, Loading };
@@ -25,12 +27,14 @@ public class FileChooser : MonoBehaviour
 
     VRKeyboard vrKeyboard;
 
+
     //save and load button are needed for 
     //enabling / disabling based on which mode is open
     [SerializeField] private GameObject saveButton, loadButton;
 
     FileInfo[] displayedFiles;
 
+    [SerializeField] private TabGroup tabGroup;
     //ShowFiles
     //Search pattern examples: 
     // *.* for files of any type
@@ -93,7 +97,9 @@ public class FileChooser : MonoBehaviour
         fileNameInput.text = "";
         saveButton.SetActive(true);
         loadButton.SetActive(false);
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
+        tabGroup.SetTab(gameObject);
+
         onSaveFile = onSaveFileCallback;
         onCancel = onCancelCallback;
     }
@@ -105,7 +111,9 @@ public class FileChooser : MonoBehaviour
         loadButton.SetActive(true);
         Debug.Log("GetsHere14 "+gameObject.name);
         
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
+        tabGroup.SetTab(gameObject);
+
         onLoadFile = onLoadFileCallback;
         onCancel = onCancelCallback;
     }

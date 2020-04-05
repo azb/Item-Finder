@@ -5,7 +5,7 @@ using UnityEngine;
 public class MenuOpener : MonoBehaviour
 {
     public OVRInput.Button openMenuButton;
-    public GameObject menu;
+    public GameObject vrui, fileOptionsMenu;
     
     AudioSource audioSource;
     public AudioClip openMenuSoundEffect, closeMenuSoundEffect;
@@ -13,7 +13,7 @@ public class MenuOpener : MonoBehaviour
     VRController vrController;
 
     int openMenuButtonIndex = 5;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +23,7 @@ public class MenuOpener : MonoBehaviour
         vrController = FindObjectOfType<VRController>();
 
         audioSource = GetComponent<AudioSource>();
-        
+
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
@@ -35,21 +35,24 @@ public class MenuOpener : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ( vrController.GetButtonPressed(openMenuButtonIndex) )
+        if (vrController.GetButtonPressed(openMenuButtonIndex))
         {
-            menu.SetActive(!menu.activeSelf);
-            if (menu.activeSelf)
+            fileOptionsMenu.SetActive(!fileOptionsMenu.activeSelf);
+
+            vrui.SetActive(!vrui.activeSelf);
+
+            if (vrui.activeSelf)
             {
                 if (openMenuSoundEffect != null)
                 {
-                audioSource.PlayOneShot(openMenuSoundEffect);
+                    audioSource.PlayOneShot(openMenuSoundEffect);
                 }
             }
             else
             {
                 if (closeMenuSoundEffect != null)
                 {
-                audioSource.PlayOneShot(closeMenuSoundEffect);
+                    audioSource.PlayOneShot(closeMenuSoundEffect);
                 }
             }
         }

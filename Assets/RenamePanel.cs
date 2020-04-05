@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class RenamePanel : MonoBehaviour
 {
-    [SerializeField] private ItemOptions itemOptions;
-
     [SerializeField] private GameObject startPanel;
+
+    [SerializeField] private SharedResourcesScriptableObject sharedResource;
     
     VRKeyboard keyboard;
     
     void OnEnable()
     {
-        keyboard = FindObjectOfType<VRKeyboard>();   
+        keyboard = Resources.FindObjectsOfTypeAll<VRKeyboard>()[0];
         keyboard.SetEnterAction(DoRename);
     }
     
     public void DoRename()
     {
-        itemOptions.RenameItem(keyboard.inputField.text);
+        sharedResource.selectedItem.Rename(keyboard.inputField.text);
         keyboard.Close();
-        itemOptions.Close();
+        sharedResource.CloseUI();
         CloseRenamePanel();
     }
 

@@ -7,6 +7,8 @@ public class FileButtons : MonoBehaviour
 {
     [SerializeField] private FileChooser fileChooser;
     [SerializeField] private RoomGameObject room;
+    [SerializeField] private TabGroup vrui;
+    [SerializeField] private GameObject homeUI;
 
     UnityEvent
         onSaveFileCallback,
@@ -65,18 +67,22 @@ public class FileButtons : MonoBehaviour
 
             room.Save(filename);
         }
+
+        
+        vrui.SetTab(homeUI);
     }
     
     void OnCancelSaveFileCallback()
     {
         Debug.Log("Saving file cancelled");
-
+        vrui.SetTab(homeUI);
 
     }
 
     void OnCancelLoadFileCallback()
     {
         Debug.Log("Loading file cancelled");
+        vrui.SetTab(homeUI);
         
     }
 
@@ -88,6 +94,8 @@ public class FileButtons : MonoBehaviour
         {
             room.Load(fileChooser.chosenFile);
         }
+        
+        vrui.SetTab(homeUI);
     }
 
     public void NewButtonPressed()
@@ -109,6 +117,11 @@ public class FileButtons : MonoBehaviour
                 onSaveFileCallback,
                 onCancelSaveFileCallback
                 );
+        }
+        else
+        {
+            //TODO: If the user clicks save and a currentFile is already selected, save it as that file instead of opening file browser window again
+
         }
     }
 

@@ -88,17 +88,18 @@ public class VRTeleporter : MonoBehaviour
         }
     }
 
-    void OnEnable()
-    {
-        if (teleportCylinder != null)
-            teleportCylinder.gameObject.SetActive(true);
-    }
-
     void OnDisable()
     {
         if (teleportCylinder != null)
             teleportCylinder.gameObject.SetActive(false);
     }
+
+    void OnDisableInHierarchy()
+    {
+
+    }
+
+
 
     void Teleport(Vector3 point)
     {
@@ -203,7 +204,6 @@ public class VRTeleporter : MonoBehaviour
 
         if (teleportButtonReleased)
         {
-
             int count = disableWhileTeleporting.Length;
 
             for (int i = 0; i < count; i++)

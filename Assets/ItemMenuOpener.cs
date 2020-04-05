@@ -6,6 +6,8 @@ public class ItemMenuOpener : MonoBehaviour
 {
     ItemFinderUser user;
 
+    [SerializeField] private SharedResourcesScriptableObject sharedResources;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +16,10 @@ public class ItemMenuOpener : MonoBehaviour
 
     public void OpenMenu()
     {
-        GameObject menu = GameObject.FindWithTag("ItemOptions");
-        menu.GetComponent<ItemOptions>().Open(transform);
+        if (user.state == ItemFinderUser.State.None)
+        {
+        sharedResources.selectedItem = transform.GetComponent<ItemGameObject>();
+        sharedResources.OpenItemOptionsTab();
+        }
     }
 }

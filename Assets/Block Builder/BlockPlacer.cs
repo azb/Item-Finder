@@ -21,7 +21,7 @@ public class BlockPlacer : MonoBehaviour
     protected virtual void Start()
     {
         room = FindObjectOfType<RoomGameObject>();
-        pointer = GetComponent<Pointer>();
+        pointer = transform.parent.GetComponent<Pointer>();
     }
 
     void OnDisable()
