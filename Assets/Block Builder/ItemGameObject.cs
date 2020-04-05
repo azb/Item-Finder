@@ -15,6 +15,7 @@ public class ItemGameObject : MonoBehaviour
     
     public Item GetItem()
     {
+        StoreTransform();
         return item;
     }
     
