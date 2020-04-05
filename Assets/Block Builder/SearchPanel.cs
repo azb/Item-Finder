@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RenamePanel : MonoBehaviour
+public class SearchPanel : MonoBehaviour
 {
     [SerializeField] private SharedResourcesScriptableObject sharedResource;
     
@@ -11,21 +11,19 @@ public class RenamePanel : MonoBehaviour
     void OnEnable()
     {
         keyboard = sharedResource.GetVRKeyboard();
-        keyboard.SetEnterAction(DoRename);
+        keyboard.SetEnterAction(DoSearch);
     }
     
-    public void DoRename()
+    public void DoSearch()
     {
-        sharedResource.selectedItem.Rename(keyboard.inputField.text);
         sharedResource.CloseVRKeyboard();
         sharedResource.CloseUI();
-        //CloseRenamePanel();
+        //CloseSearchPanel();
     }
 
-    //public void CloseRenamePanel()
+    //public void CloseSearchPanel()
     //{
     //    sharedResource.CloseUI();
-    //    //sharedResource.vruiTabGroup.SetTab(startPanel);
     //    //gameObject.SetActive(false);
     //    //startPanel.SetActive(true);
     //}

@@ -40,9 +40,14 @@ public class SharedResourcesScriptableObject : ScriptableObject
             Debug.LogError("VR keyboard not set");
         }
     }
-
+    
     public void SetVRKeyboard(VRKeyboard vrKeyboard)
     {
         this.vrKeyboard = vrKeyboard;
+    }
+
+    public VRKeyboard GetVRKeyboard()
+    {
+        return vrKeyboard;
     }
 }
