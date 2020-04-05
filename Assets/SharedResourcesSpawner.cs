@@ -11,11 +11,14 @@ public class SharedResourcesSpawner : MonoBehaviour
 
     [SerializeField] private InputField renameItemField;
 
+    [SerializeField] private VRKeyboard vrKeyboard;
+
     // Start is called before the first frame update
     void Start()
     {
         sharedResources.vruiTabGroup = vruiTabGroup;
         sharedResources.itemOptionsStartPanel = itemOptionsStartPanel;
+        sharedResources.SetVRKeyboard(vrKeyboard);
     }
     
     public void DeleteSelectedItem()
@@ -36,6 +39,15 @@ public class SharedResourcesSpawner : MonoBehaviour
         vruiTabGroup.gameObject.SetActive(false);
     }
 
+    public void SetInputFieldTextToSelectedItemName()
+    {
+        renameItemField.text = sharedResources.selectedItem.GetItem().itemName;
+    }
 
+    
+    public void CloseVRKeyboard()
+    {
+        sharedResources.CloseVRKeyboard();
+    }
 
 }
