@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 //This script allows the player to teleport around the map
 
@@ -39,13 +40,18 @@ public class VRTeleporter : MonoBehaviour
 
     Mesh lineMesh;
     int teleportArcLineCount;
-    Vector3[] teleportArcLinePositions;
+    Vector3[] teleportArcLinePositions, finalTeleportArcLinePositions;
     public Transform teleportCylinder;
 
     bool teleportButtonPressed, teleportButtonHeld, teleportButtonReleased;
 
+
+    List<Vector3> storedLinePoints;
+
     void Start()
     {
+        storedLinePoints = new List<Vector3>();
+
         disableWhileTeleportingStartEnabled = new bool[disableWhileTeleporting.Length];
 
         audioSource = GetComponent<AudioSource>();
@@ -99,14 +105,37 @@ public class VRTeleporter : MonoBehaviour
 
     }
 
-
-
+    
     void Teleport(Vector3 point)
     {
         audioSource.PlayOneShot(teleportSoundEffect);
         playArea.position = point;
     }
-    
+
+    int increments = 100;
+
+    void UpdateTeleportArc()
+    {
+        teleportArcLineCount = 100;
+
+        teleportArcLinePositions = new Vector3[teleportArcLineCount];
+
+
+        for (int i = 0; i < teleportArcLineCount; i++)
+        {
+            teleportArcLinePositions[i] = new Vector3(0, -i * i / 50f, i + .05f);
+        }
+
+        line.SetVertexCount(teleportArcLineCount);
+
+        line.SetPositions(teleportArcLinePositions);
+
+        lineMesh = new Mesh();
+        line.BakeMesh(lineMesh);
+    }
+
+
+
     void Update()
     {
         teleportButtonPressed =
@@ -123,7 +152,7 @@ public class VRTeleporter : MonoBehaviour
             (vrController.touchpadRightHand.GetTouchpadButtonReleased()
             && Mathf.Abs(vrController.touchpadRightHand.padPos.x) < .4f)
             || (vrController.GetJoystickAxisReleased(1) && vrController.usesJoystick);
-        
+
         if (teleportButtonPressed)
         {
             int count = disableWhileTeleporting.Length;
@@ -133,7 +162,7 @@ public class VRTeleporter : MonoBehaviour
                 disableWhileTeleportingStartEnabled[i] = disableWhileTeleporting[i].enabled;
                 disableWhileTeleporting[i].enabled = false;
             }
-            
+
             audioSource.PlayOneShot(powerUpSoundEffect);
             teleportCylinder.gameObject.SetActive(true);
 
@@ -143,33 +172,22 @@ public class VRTeleporter : MonoBehaviour
             {
                 vrPointers[i].enabled = false;
             }
-            
-            teleportArcLinePositions = new Vector3[100];
 
-            teleportArcLineCount = teleportArcLinePositions.Length;
+            UpdateTeleportArc();
 
-            for (int i = 0; i < teleportArcLineCount; i++)
-            {
-                teleportArcLinePositions[i] = new Vector3(0, -i * i / 50f, i + .05f);
-            }
-
-            line.SetVertexCount(teleportArcLineCount);
-
-            line.SetPositions(teleportArcLinePositions);
-
-            lineMesh = new Mesh();
-            line.BakeMesh(lineMesh);
         }
 
         if (teleportButtonHeld)
         {
-            //teleportCylinder.position = transform.TransformPoint(teleportArcLinePositions[1]);
-
             teleportArcHitsGround = false;
 
-            for (int i = 0; i < teleportArcLineCount - 1; i++)
+            storedLinePoints.Clear();
+
+            for (int i = 0; i < teleportArcLineCount - 1; i++) //?8teleportArcLineCount - 1
             {
                 RaycastHit hitinfo;
+
+                storedLinePoints.Add(teleportArcLinePositions[i]);
 
                 if (Physics.Linecast(
                     transform.TransformPoint(teleportArcLinePositions[i]),
@@ -186,10 +204,19 @@ public class VRTeleporter : MonoBehaviour
                     {
                         teleportArcHitsGround = true;
                         teleportCylinder.position = hitinfo.point;
+                        increments = i;
                         break;
                     }
                 }
             }
+
+            line.positionCount = (increments);
+
+            for (int i = 0; i < increments; i++)
+            {
+                line.SetPosition(i, storedLinePoints[i]);
+            }
+
             teleportCylinder.gameObject.SetActive(teleportArcHitsGround);
 
             if (teleportArcHitsGround)
@@ -210,14 +237,14 @@ public class VRTeleporter : MonoBehaviour
             {
                 disableWhileTeleporting[i].enabled = disableWhileTeleportingStartEnabled[i];
             }
-            
+
             count = vrPointers.Length;
 
             for (int i = 0; i < count; i++)
             {
                 vrPointers[i].enabled = true;
             }
-            
+
             teleportCylinder.gameObject.SetActive(false);
             Vector3[] positions = new Vector3[2];
 
