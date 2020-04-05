@@ -19170,6 +19170,21 @@ PrefabInstance:
       propertyPath: playArea
       value: 
       objectReference: {fileID: 1128676924}
+    - target: {fileID: 5243270258135980648, guid: b6af1fb3487630c46a329d771c5d683a,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5243270258135980648, guid: b6af1fb3487630c46a329d771c5d683a,
+        type: 3}
+      propertyPath: m_Parameters.numCornerVertices
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5243270258135980648, guid: b6af1fb3487630c46a329d771c5d683a,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6af1fb3487630c46a329d771c5d683a, type: 3}
 --- !u!1001 &6411541455635483968
