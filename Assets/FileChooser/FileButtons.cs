@@ -92,6 +92,7 @@ public class FileButtons : MonoBehaviour
         
         if (fileChooser.chosenFile != "")
         {
+            currentFile = fileChooser.chosenFile;
             room.Load(fileChooser.chosenFile);
         }
         
@@ -120,8 +121,7 @@ public class FileButtons : MonoBehaviour
         }
         else
         {
-            //TODO: If the user clicks save and a currentFile is already selected, save it as that file instead of opening file browser window again
-
+            room.Save(currentFile);
         }
     }
 
