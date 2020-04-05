@@ -25,9 +25,6 @@ public class FileChooser : MonoBehaviour
 
     [SerializeField] private InputField fileNameInput;
 
-    VRKeyboard vrKeyboard;
-
-
     //save and load button are needed for 
     //enabling / disabling based on which mode is open
     [SerializeField] private GameObject saveButton, loadButton;
@@ -35,11 +32,20 @@ public class FileChooser : MonoBehaviour
     FileInfo[] displayedFiles;
 
     [SerializeField] private TabGroup tabGroup;
+
+    [SerializeField] private SharedResourcesScriptableObject sharedResource;
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+    
     //ShowFiles
     //Search pattern examples: 
     // *.* for files of any type
     // *.txt for txt files
-
+    
     public void ShowFiles(string directory, string searchPattern)
     {
         ClearFileList();
@@ -86,11 +92,6 @@ public class FileChooser : MonoBehaviour
         }
     }
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        CloseVRKeyboard();
-    }
     
     public void OpenSaveFileWindow(UnityEvent onSaveFileCallback, UnityEvent onCancelCallback)
     {
@@ -125,7 +126,7 @@ public class FileChooser : MonoBehaviour
 
         gameObject.SetActive(false);
         onSaveFile.Invoke();
-        CloseVRKeyboard();
+        sharedResource.CloseVRKeyboard();
     }
     
     public void LoadButtonClicked()
@@ -135,20 +136,16 @@ public class FileChooser : MonoBehaviour
         
         gameObject.SetActive(false);
         onLoadFile.Invoke();
-        CloseVRKeyboard();
+        sharedResource.CloseVRKeyboard();
     }
 
     public void CancelButtonClicked()
     {
         gameObject.SetActive(false);
-        onCancel.Invoke();
-        CloseVRKeyboard();
-    }
 
-    void CloseVRKeyboard()
-    {
-        vrKeyboard = FindObjectOfType<VRKeyboard>();
-        if (vrKeyboard != null)
-        vrKeyboard.Close();
+        //It makes sense for onCancel to be a UnityEvent so that 
+        //whatever UI called the file browser can set it's onCancel event
+        onCancel.Invoke();
+        sharedResource.CloseVRKeyboard();
     }
 }
