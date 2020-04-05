@@ -19,14 +19,5 @@ public class RenamePanel : MonoBehaviour
         sharedResource.selectedItem.Rename(keyboard.inputField.text);
         sharedResource.CloseVRKeyboard();
         sharedResource.CloseUI();
-        //CloseRenamePanel();
     }
-
-    //public void CloseRenamePanel()
-    //{
-    //    sharedResource.CloseUI();
-    //    //sharedResource.vruiTabGroup.SetTab(startPanel);
-    //    //gameObject.SetActive(false);
-    //    //startPanel.SetActive(true);
-    //}
 }

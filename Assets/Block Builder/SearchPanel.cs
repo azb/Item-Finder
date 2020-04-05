@@ -18,13 +18,5 @@ public class SearchPanel : MonoBehaviour
     {
         sharedResource.CloseVRKeyboard();
         sharedResource.CloseUI();
-        //CloseSearchPanel();
     }
-
-    //public void CloseSearchPanel()
-    //{
-    //    sharedResource.CloseUI();
-    //    //gameObject.SetActive(false);
-    //    //startPanel.SetActive(true);
-    //}
 }
