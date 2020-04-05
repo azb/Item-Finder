@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 8105787}
   - component: {fileID: 8105788}
   - component: {fileID: 8105789}
+  - component: {fileID: 8105790}
   m_Layer: 5
   m_Name: VRUI
   m_TagString: Untagged
@@ -271,6 +272,34 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 2960309335983355411}
   - {fileID: 2140201398}
+--- !u!114 &8105790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8105784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d9e8dd55135a23409a7bae6cc91a622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &9412134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2603,6 +2632,7 @@ MonoBehaviour:
   room: {fileID: 619162376}
   vrui: {fileID: 8105789}
   homeUI: {fileID: 560364621}
+  user: {fileID: 428867297}
 --- !u!65 &201297421
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3400,10 +3430,16 @@ PrefabInstance:
       propertyPath: tabGroup
       value: 
       objectReference: {fileID: 8105789}
+    - target: {fileID: 6812024880188135592, guid: 315ce4a0adf6b35478ad99b730ea7b59,
+        type: 3}
+      propertyPath: sharedResource
+      value: 
+      objectReference: {fileID: 11400000, guid: 16cb43b53481f2e4cbf83189f25670e2,
+        type: 2}
     - target: {fileID: 5764677141072757469, guid: 315ce4a0adf6b35478ad99b730ea7b59,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5764677141072757469, guid: 315ce4a0adf6b35478ad99b730ea7b59,
         type: 3}
@@ -3428,6 +3464,31 @@ PrefabInstance:
     - target: {fileID: 5764677141072757469, guid: 315ce4a0adf6b35478ad99b730ea7b59,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764677141072757469, guid: 315ce4a0adf6b35478ad99b730ea7b59,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764677141072757469, guid: 315ce4a0adf6b35478ad99b730ea7b59,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764677141072757469, guid: 315ce4a0adf6b35478ad99b730ea7b59,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1532211336}
+    - target: {fileID: 5764677141072757469, guid: 315ce4a0adf6b35478ad99b730ea7b59,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CloseVRKeyboard
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764677141072757469, guid: 315ce4a0adf6b35478ad99b730ea7b59,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5764677140246679394, guid: 315ce4a0adf6b35478ad99b730ea7b59,
@@ -5680,19 +5741,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 388211834}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &700391109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 700391108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 647d6b7f412ab224a8169184a7ed966f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scrollbar: {fileID: 700391110}
 --- !u!114 &700391110 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5764677141352642678, guid: 315ce4a0adf6b35478ad99b730ea7b59,
@@ -5705,6 +5753,19 @@ MonoBehaviour:
   m_Script: {fileID: -2061169968, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &700391113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700391108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647d6b7f412ab224a8169184a7ed966f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollbar: {fileID: 700391110}
 --- !u!1 &720810756
 GameObject:
   m_ObjectHideFlags: 0
@@ -10343,6 +10404,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1532211336}
+        m_MethodName: SetInputFieldTextToSelectedItemName
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onHover:
@@ -12811,6 +12883,7 @@ MonoBehaviour:
   vruiTabGroup: {fileID: 8105789}
   itemOptionsStartPanel: {fileID: 2140201398}
   renameItemField: {fileID: 2960309335638388136}
+  vrKeyboard: {fileID: 1813188905}
 --- !u!4 &1532211337
 Transform:
   m_ObjectHideFlags: 0
@@ -15062,6 +15135,33 @@ MonoBehaviour:
   inputField: {fileID: 0}
   vrKeyboardCanvas: {fileID: 1752790167}
   vrui: {fileID: 8105784}
+  letterKeys:
+  - {fileID: 88158453}
+  - {fileID: 2108279916}
+  - {fileID: 1141129341}
+  - {fileID: 109933480}
+  - {fileID: 115647938}
+  - {fileID: 33370702}
+  - {fileID: 2045608731}
+  - {fileID: 638717394}
+  - {fileID: 1352018602}
+  - {fileID: 762901559}
+  - {fileID: 628463312}
+  - {fileID: 531539914}
+  - {fileID: 991989415}
+  - {fileID: 1622237232}
+  - {fileID: 739900290}
+  - {fileID: 1253803413}
+  - {fileID: 374595897}
+  - {fileID: 2108443369}
+  - {fileID: 99750087}
+  - {fileID: 2034030322}
+  - {fileID: 1491988813}
+  - {fileID: 1261312883}
+  - {fileID: 873031857}
+  - {fileID: 591563034}
+  - {fileID: 939580963}
+  - {fileID: 1371483050}
 --- !u!1 &1826701585
 GameObject:
   m_ObjectHideFlags: 0
@@ -18759,6 +18859,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1532211336}
+        m_MethodName: CloseVRKeyboard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onHover:
@@ -18890,6 +19001,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1532211336}
         m_MethodName: RenameSelectedItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1532211336}
+        m_MethodName: CloseVRKeyboard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
