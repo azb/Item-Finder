@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemFinderUser : MonoBehaviour
 {
-    public enum State { Architect, Search, None };
+    public enum State { Architect, Search, None, Loading };
 
     public State state = State.None;
 
@@ -32,4 +32,29 @@ public class ItemFinderUser : MonoBehaviour
             state = State.None;
         }
     }
+
+    public void StartLoadingState()
+    {
+        state = State.Loading;
+        StartLoadingTimer(1f);
+    }
+
+    void StartLoadingTimer(float waitTime)
+    {
+        IEnumerator timer = LoadingTimer(waitTime);
+        StartCoroutine(timer);
+        Debug.Log("StartLoadingTimer "+gameObject.name);
+
+
+    }
+    IEnumerator LoadingTimer(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        //Do something
+        state = State.None;
+        Debug.Log("FinishedLoadingTimer "+gameObject.name);
+
+
+    }
+
 }

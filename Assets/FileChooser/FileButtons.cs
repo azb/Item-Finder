@@ -16,6 +16,7 @@ public class FileButtons : MonoBehaviour
         onCancelLoadFileCallback,
         onLoadFileCallback;
 
+    [SerializeField] private ItemFinderUser user;
 
     string currentFile = "";
 
@@ -89,6 +90,7 @@ public class FileButtons : MonoBehaviour
         {
             currentFile = fileChooser.chosenFile;
             room.Load(fileChooser.chosenFile);
+            user.StartLoadingState();
         }
 
         vrui.SetTab(homeUI);
