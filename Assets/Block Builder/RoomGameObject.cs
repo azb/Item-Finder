@@ -59,6 +59,8 @@ public class RoomGameObject : MonoBehaviour
     {
         if (File.Exists(filename))
         {
+            Clear();
+
             Room room = Room.LoadFromFile(filename);
 
             Item[] saveableItemsArray = room.GetItemsList();
