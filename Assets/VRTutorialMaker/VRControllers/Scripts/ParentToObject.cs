@@ -42,11 +42,10 @@ public class ParentToObject : MonoBehaviour
             ZeroPosition();
         }
     }
-
+    
 
     void ZeroPosition()
     {
-
         if (newParent != null)
         {
             transform.parent = newParent;

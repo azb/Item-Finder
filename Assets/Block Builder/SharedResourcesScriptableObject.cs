@@ -8,6 +8,10 @@ public class SharedResourcesScriptableObject : ScriptableObject
     public TabGroup vruiTabGroup;
     public GameObject itemOptionsStartPanel;
     public ItemGameObject selectedItem;
+    public Transform arrowTarget;
+    public GameObject arrow;
+    public ItemFinderUser user;
+
 
     VRKeyboard vrKeyboard;
 
@@ -37,7 +41,7 @@ public class SharedResourcesScriptableObject : ScriptableObject
         }
         else
         {
-            Debug.LogError("VR keyboard not set");
+            //Debug.LogError("VR keyboard not set");
         }
     }
     
@@ -50,4 +54,17 @@ public class SharedResourcesScriptableObject : ScriptableObject
     {
         return vrKeyboard;
     }
+
+    public void SetArrowTarget(Transform target)
+    {
+        Debug.Log("selectedItem = "+selectedItem);
+        Debug.Log("selectedItem.floatingLabel = "+selectedItem.floatingLabel);
+
+
+        selectedItem.floatingLabel.ShowLabel();
+        arrow.gameObject.SetActive(true);
+        arrowTarget.position = target.position;
+    }
+
+
 }

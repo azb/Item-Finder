@@ -74,6 +74,10 @@ public class RoomGameObject : MonoBehaviour
                     saveableItemsArray[i].position,
                     Quaternion.identity
                     );
+                
+                newItem.GetComponent<ItemGameObject>().GetItem().itemName 
+                    = saveableItemsArray[i].itemName;
+                
                 newItem.localScale = saveableItemsArray[i].scale;
             }
         }

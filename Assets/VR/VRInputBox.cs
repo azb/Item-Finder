@@ -22,9 +22,6 @@ public class VRInputBox : MonoBehaviour
     
     public void OnClick()
     {
-        Debug.Log("OnClick GetsHere11 "+gameObject.name);
-
-
         keyboard.Open(inputField);
     }
 }

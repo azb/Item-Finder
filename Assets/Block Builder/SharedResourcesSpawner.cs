@@ -13,12 +13,26 @@ public class SharedResourcesSpawner : MonoBehaviour
 
     [SerializeField] private VRKeyboard vrKeyboard;
 
+    [SerializeField] private Transform arrowTarget;
+    [SerializeField] private GameObject arrow;
+
+    [SerializeField] private ItemFinderUser user;
+
     // Start is called before the first frame update
     void Start()
     {
         sharedResources.vruiTabGroup = vruiTabGroup;
         sharedResources.itemOptionsStartPanel = itemOptionsStartPanel;
         sharedResources.SetVRKeyboard(vrKeyboard);
+        sharedResources.arrowTarget = arrowTarget;
+        sharedResources.arrow = arrow;
+        sharedResources.user = user;
+    }
+
+    public void ShowWhereObjectIs()
+    {
+        arrow.SetActive(true);
+        arrowTarget.position = sharedResources.selectedItem.transform.position;
     }
     
     public void DeleteSelectedItem()

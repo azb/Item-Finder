@@ -226,6 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   label: {fileID: 220176064086172212}
   text: {fileID: 4539670043291441096}
+  sharedResource: {fileID: 11400000, guid: 16cb43b53481f2e4cbf83189f25670e2, type: 2}
 --- !u!114 &8232114315896395734
 MonoBehaviour:
   m_ObjectHideFlags: 0

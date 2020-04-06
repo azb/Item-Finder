@@ -6,32 +6,54 @@ using UnityEngine;
 public class ItemGameObject : MonoBehaviour
 {
     Item item;
-    
-    // Start is called before the first frame update
+
+    public FloatingLabel floatingLabel;
+
+    bool initialized;
+
     void Start()
     {
-        item = new Item("new item");
+        Initialize();
     }
-    
+
+    void SetFloatingLabel()
+    {
+
+    }
+
+    // Start is called before the first frame update
+    void Initialize()
+    {
+        if (!initialized)
+        {
+            item = new Item("new item");
+            initialized = true;
+        }
+    }
+
     public Item GetItem()
     {
+        if (!initialized)
+        {
+            Initialize();
+        }
+
         StoreTransform();
         return item;
     }
-    
+
     public void StoreTransform()
     {
         //Debug.Log("storing transform "+gameObject.name);
-        item.StoreTransform(transform.position, transform.localScale);
+        if (item != null)
+        {
+            item.StoreTransform(transform.position, transform.localScale);
+        }
     }
-    
+
     public void Rename(string newName)
     {
         item.itemName = newName;
     }
 
-    public static implicit operator ItemGameObject(Transform v)
-    {
-        throw new NotImplementedException();
-    }
 }

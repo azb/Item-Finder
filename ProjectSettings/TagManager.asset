@@ -6,6 +6,8 @@ TagManager:
   tags:
   - MainCameraPC
   - ItemOptions
+  - SelectedObject
+  - ArrowTarget
   layers:
   - Default
   - TransparentFX

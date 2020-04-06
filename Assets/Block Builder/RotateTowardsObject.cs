@@ -71,6 +71,7 @@ namespace VRTutorializer
                 -ydir + offset.y,
                 offset.z
                 );
+                
         }
     }
 }

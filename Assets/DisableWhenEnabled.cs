@@ -14,17 +14,8 @@ public class DisableWhenEnabled : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void OnEnable()
     {
-        Debug.Log("OnEnable "+gameObject.name);
-
-
         DisableGameObjects();
     }
 
@@ -52,7 +43,10 @@ public class DisableWhenEnabled : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
+            if (gameObjectToDisable[i] != null)
+            {
             gameObjectToDisable[i].SetActive(true); //gameObjectsPreviousState[i]);
+            }
         }
     }
 }

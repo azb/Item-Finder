@@ -14,8 +14,6 @@ public class Room
 
     public void LoadItems()
     {
-        Debug.Log("Loading items");
-
         int count = itemJson.Length;
 
         itemsArray = new Item[count];

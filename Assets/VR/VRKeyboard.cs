@@ -10,7 +10,8 @@ public class VRKeyboard : MonoBehaviour
 
     [SerializeField] private GameObject vrKeyboardCanvas, vrui;
 
-    private UnityEvent onHitEnterButton;
+    private UnityEvent 
+        onHitEnterButton;
 
     [SerializeField] private GameObject[] letterKeys;
 

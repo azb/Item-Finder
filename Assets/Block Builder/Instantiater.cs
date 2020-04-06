@@ -23,7 +23,9 @@ public class Instantiater : MonoBehaviour
         newObj.GetComponent<FollowObject>()
             .target = transform;
 
+        ItemGameObject itemGameObject = GetComponent<ItemGameObject>();
+
         newObj.GetComponent<FloatingLabel>()
-            .SetItem(GetComponent<ItemGameObject>());
+            .SetItem(itemGameObject);
     }
 }
