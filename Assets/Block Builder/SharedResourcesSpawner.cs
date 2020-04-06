@@ -34,7 +34,7 @@ public class SharedResourcesSpawner : MonoBehaviour
         arrow.SetActive(true);
         arrowTarget.position = sharedResources.selectedItem.transform.position;
     }
-    
+
     public void DeleteSelectedItem()
     {
         Destroy(sharedResources.selectedItem.gameObject);
@@ -57,11 +57,30 @@ public class SharedResourcesSpawner : MonoBehaviour
     {
         renameItemField.text = sharedResources.selectedItem.GetItem().itemName;
     }
-
     
     public void CloseVRKeyboard()
     {
         sharedResources.CloseVRKeyboard();
     }
 
+    public void HideSelectedObjectLabel()
+    {
+        if (sharedResources.selectedItem != null)
+        {
+            FloatingLabel label = sharedResources.selectedItem.floatingLabel;
+
+            sharedResources.selectedItem = null;
+
+            label.HideLabel();
+        }
+
+        FloatingLabel[] floatingLabels = FindObjectsOfType<FloatingLabel>();
+
+        int count = floatingLabels.Length;
+
+        for(int i=0;i<count;i++)
+        {
+            floatingLabels[i].HideLabel();
+        }
+    }
 }
