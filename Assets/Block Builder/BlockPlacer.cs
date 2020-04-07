@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlockPlacer : MonoBehaviour
 {
-    protected Pointer pointer;
+    [SerializeField] private Pointer pointer;
 
     [SerializeField] private Transform blockPrefab;
 
@@ -21,7 +21,6 @@ public class BlockPlacer : MonoBehaviour
     protected virtual void Start()
     {
         room = FindObjectOfType<RoomGameObject>();
-        pointer = transform.parent.GetComponent<Pointer>();
     }
 
     void OnDisable()
@@ -48,6 +47,9 @@ public class BlockPlacer : MonoBehaviour
         {
             if (placeButtonPressed)
             {
+                Debug.Log("blockPrefab "+blockPrefab);
+                Debug.Log("pointer =  "+pointer);
+                
                 newBlock = Instantiate(blockPrefab, pointer.point, Quaternion.identity);
                 newBlock.GetComponent<Collider>().enabled = false;
                 startPoint = pointer.point;
