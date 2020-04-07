@@ -4,31 +4,35 @@ using UnityEngine;
 
 public class PlatformSwitcher : MonoBehaviour
 {
-    public GameObject augmentedRealityRig, virtualRealityRig;
-    
+    public GameObject augmentedRealityRig, virtualRealityRig, pcRig;
+
+    public BuildSettingsScriptableObject buildSettings;
+
     // Start is called before the first frame update
     void Start()
     {
         virtualRealityRig.SetActive(false);
         augmentedRealityRig.SetActive(false);
 
-        if (VR.GetPlatform() == VR.Platform.None)
+        switch (buildSettings.buildMode)
         {
-            augmentedRealityRig.SetActive(true);
-        }
-        else
-        {
-            virtualRealityRig.SetActive(true);
-        }
+            case BuildSettingsScriptableObject.BuildMode.PCFlatMonitor:
 
-        //if (platform == Platform.AugmentedReality)
-        //{
-        //    augmentedRealityRig.SetActive(true);
-        //}
+                pcRig.SetActive(true);
 
-        //if (platform == Platform.VirtualReality)
-        //{
-        //    virtualRealityRig.SetActive(true);
-        //}
+                break;
+
+            case BuildSettingsScriptableObject.BuildMode.PhoneAugmentedReality:
+
+                augmentedRealityRig.SetActive(true);
+
+                break;
+
+            case BuildSettingsScriptableObject.BuildMode.VirtualReality:
+
+                virtualRealityRig.SetActive(true);
+
+                break;
+        }
     }
 }
