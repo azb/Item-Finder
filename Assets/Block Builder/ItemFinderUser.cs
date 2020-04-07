@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemFinderUser : MonoBehaviour
 {
-    public enum State { Architect, Search, HomeUI, None, Loading };
+    public enum State { Architect, Search, HomeUI, None, Loading, Navigate };
 
     public State state = State.None;
 
