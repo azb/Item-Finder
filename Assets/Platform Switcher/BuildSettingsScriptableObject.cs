@@ -11,7 +11,7 @@ using static UnityEditor.PlayerSettings;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/BuildSettingsScriptableObject", order = 1)]
 public class BuildSettingsScriptableObject : ScriptableObject
 {
-    public enum BuildMode { HeadmountedDisplay, NonHeadmountedDisplay };
+    public enum BuildMode { VirtualReality, PhoneAugmentedReality, PCFlatMonitor };
 
     public BuildMode buildMode;
 
@@ -34,7 +34,7 @@ public class BuildSettingsScriptableObject : ScriptableObject
         {
             Debug.Log("Manifests don't exist yet, creating from template.");
 
-            if (buildMode == BuildMode.HeadmountedDisplay)
+            if (buildMode == BuildMode.VirtualReality)
             {
                 File.Copy(ManifestTemplateName, VirtualRealityManifestName);
             }
@@ -49,7 +49,7 @@ public class BuildSettingsScriptableObject : ScriptableObject
         {
             Debug.Log("OVR Gradle Generation Script doesn't exist yet, creating from template.");
 
-            if (buildMode == BuildMode.HeadmountedDisplay)
+            if (buildMode == BuildMode.VirtualReality)
             {
                 File.Copy(OVRGradleGenerationTemplateName, VirtualRealityOVRGradleGenerationName);
             }
@@ -116,7 +116,7 @@ public class BuildSettingsScriptableObject : ScriptableObject
         
         
 #if UNITY_EDITOR
-        if (buildMode == BuildMode.NonHeadmountedDisplay)
+        if (buildMode == BuildMode.PhoneAugmentedReality)
         {
             //NOTE: deleting the VR android manifest is necessary to make the Android Icon show up on the spectator device (otherwise it is hidden by default for oculus vr apps)
             RenameFile(VirtualRealityManifestName, NonHeadmountedManifestName);
@@ -130,7 +130,7 @@ public class BuildSettingsScriptableObject : ScriptableObject
             PlayerSettings.virtualRealitySupported = false;
         }
         else
-        if (buildMode == BuildMode.HeadmountedDisplay)
+        if (buildMode == BuildMode.VirtualReality)
         {
             RenameFile(NonHeadmountedManifestName, VirtualRealityManifestName);
             RenameFile(NonHeadmountedOVRGradleGenerationName, VirtualRealityOVRGradleGenerationName);

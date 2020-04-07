@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca429f40b66504469a2e7f46a0df476, type: 3}
   m_Name: BuildSettingsScriptableObject
   m_EditorClassIdentifier: 
-  buildMode: 1
+  buildMode: 2
