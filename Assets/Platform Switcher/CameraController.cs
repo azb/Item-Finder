@@ -8,13 +8,14 @@ public class CameraController : MonoBehaviour
 {
     [HideInInspector]
     public float viewScale = 5, viewScaleTarget = 5;
-    
-    [SerializeField] private float 
-        minZoom = 5, 
-        maxZoom = 100, 
-        zoomSensitivity = 5, 
+
+    [SerializeField]
+    private float
+        minZoom = 5,
+        maxZoom = 100,
+        zoomSensitivity = 5,
         rotateSensitivity = 200;
-    
+
     public Camera cam;
 
     [HideInInspector]
@@ -24,7 +25,7 @@ public class CameraController : MonoBehaviour
 
     private Vector2 orgBoxPos = Vector2.zero;
     private Vector2 endBoxPos = Vector2.zero;
-    
+
     Rigidbody rb;
 
     [HideInInspector]
@@ -33,18 +34,22 @@ public class CameraController : MonoBehaviour
     public float zoom, smoothedZoom;
 
     [HideInInspector]
-    public bool movingView, 
-                movingViewJustFinished, 
-                movingViewJustStarted, 
+    public bool movingView,
+                movingViewJustFinished,
+                movingViewJustStarted,
                 movingViewPrev;
 
     float speed = 500;
-    
+
     [HideInInspector]
     public float timeSinceMovedView;
 
+    float minHeight;
+
     public virtual void Start()
     {
+        minHeight = transform.position.y;
+
         cam = GetComponentInChildren<Camera>();
 
         rb = transform.GetComponent<Rigidbody>();
@@ -69,7 +74,7 @@ public class CameraController : MonoBehaviour
             timeSinceMovedView = 0f;
     }
 
-    public void Zoom( float zoomAmount )
+    public void Zoom(float zoomAmount)
     {
         zoom -= (zoom / 2f) * zoomAmount * zoomSensitivity; // * Time.deltaTime;
 
@@ -91,7 +96,7 @@ public class CameraController : MonoBehaviour
         UpdateChildCamPosition();
     }
 
-    public void RotateCamera( float rotateAmount )
+    public void RotateCamera(float rotateAmount)
     {
         camRotation.y -= rotateAmount * rotateSensitivity * Time.deltaTime;
         transform.eulerAngles = camRotation;
@@ -114,45 +119,46 @@ public class CameraController : MonoBehaviour
     public virtual void Update()
     {
         if (timeSinceMovedView < 10)
-        timeSinceMovedView += Time.deltaTime;
+            timeSinceMovedView += Time.deltaTime;
 
         camRotation = transform.eulerAngles;
-        
+
         //WHEN MIDDLE MOUSE BUTTON IS PRESSED MOVE VIEW
-        if (movingViewJustStarted) //Input.GetMouseButtonDown(2))
+        if (movingViewJustStarted)
         {
             mouse_start_pos = Input.mousePosition;
             view_start_pos = transform.position;
         }
-        
-        if (movingView) //Input.GetMouseButton(2))
+
+        if (movingView)
         {
-            Vector3 vec = Quaternion.AngleAxis(camRotation.y, Vector3.up) * (new Vector3(
-                 -(Input.mousePosition.x - mouse_start_pos.x) / 500 * (transform.position.y + 10), 0,
-                   -(Input.mousePosition.y - mouse_start_pos.y) / 500 * (transform.position.y + 10)
-                   ) * viewScale )
+            float moveSpeed = 1f / 4000f;
+
+            float x = -(Input.mousePosition.x - mouse_start_pos.x) * moveSpeed;
+            float y = minHeight;
+            float z = -(Input.mousePosition.y - mouse_start_pos.y) * moveSpeed;
+
+            Vector3 vec = 
+                Quaternion.AngleAxis(camRotation.y, Vector3.up) *
+                (
+                new Vector3(x,y,z) * Mathf.Pow(viewScale, 3)
+                )
                 + view_start_pos;
-                //new Vector3(view_start_pos.x,view_start_pos.y,view_start_pos.z)
-                ;
-            //new Vector3(view_start_pos.x + (-Input.mousePosition.x - mouse_start_pos.x) / 1000, transform.position.y , view_start_pos.z + (-Input.mousePosition.y - mouse_start_pos.y) / 1000);
+            ;
             transform.position = vec;
         }
-        //float scale = transform.position.y / 2;
-    
-        EnforceMinimumCameraHeight();
 
+        EnforceMinimumCameraHeight();
     }
 
     void EnforceMinimumCameraHeight()
     {
-        float minheight = 0;
-
         //SET MINIMUM HEIGHT FOR VIEW
-        if (transform.position.y < minheight)
+        if (transform.position.y < minHeight)
         {
             transform.position =
                 Quaternion.AngleAxis(camRotation.y, Vector3.up)
-                * new Vector3(transform.position.x, minheight, transform.position.z);
+                * new Vector3(transform.position.x, minHeight, transform.position.z);
 
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         }
