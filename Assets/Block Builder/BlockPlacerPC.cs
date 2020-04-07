@@ -15,7 +15,7 @@ public class BlockPlacerPC : BlockPlacer
     // Update is called once per frame
     void Update()
     {
-        if (!EventSystem.current.currentSelectedGameObject)
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
             PlaceBlock(
                 Input.GetMouseButtonDown(0),
